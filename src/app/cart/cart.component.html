@@ -1,0 +1,42 @@
+<h3>주문 리스트</h3>
+<div *ngFor="let item of items">
+  <div class="row cart-item">
+    <div class="col col-6">
+      <div class="row">
+        <div class="col col-2">
+          <img src="{{item.img}}" />
+        </div>
+        <div class="col col-10">
+          <div class="row div-menu">
+            <div class="col col-12">
+              {{item.name}}
+              <span class="span-price">{{item.price * item.number}}원</span>
+            </div>
+            <div class="col col-12 counter">
+              <button class="btn btn-link" (click)="decrease(item.id)">-</button>
+              {{ item.number }}
+              <button class="btn btn-link" (click)="increase(item.id)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-6 d-flex-end">
+      <button class="btn btn-primary" (click)="removeInCart(item.id)">주문 취소</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="items.length === 0" class="row">
+  <div class="col col-12 d-flex-center mb-3">장바구니가 비었습니다.</div>
+</div>
+<div class="row py-3 div-total b-t-1">
+  <div class="col col-6">
+    총 {{ count }}잔
+  </div>
+  <div class="col col-6 text-right">
+    합계 {{ totalPrice }}원
+  </div>
+  <div class="col col-12 text-right">
+    <button class="btn btn-primary" [routerLink]="[ '/order' ]">주문하기</button>
+  </div>
+</div>

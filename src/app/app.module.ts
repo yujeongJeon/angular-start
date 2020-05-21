@@ -7,13 +7,19 @@ import { AppComponent } from './app.component';
 import { AppHeader } from './app-header/app-header.component'
 import { ProductList } from './product-list/product-list.component';
 import { ProductModal } from './product-modal/product-modal.component';
+import { ProductDetail } from './product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppHeader,
     ProductList,
-    ProductModal
+    ProductModal,
+    ProductDetail,
+    CartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

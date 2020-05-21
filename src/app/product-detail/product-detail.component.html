@@ -1,0 +1,7 @@
+<div *ngIf="product">
+  <img src="{{product.img}}" />
+  <p>{{product.name}}<span  class="ml-3">{{ product.price }}원</span></p>
+  <p>{{product.description}}</p>
+  <button class="btn btn-primary mr-1" [routerLink]="[ '/' ]">back</button>
+  <button class="btn btn-primary" (click)="addToCart(product)">주문</button>
+</div>

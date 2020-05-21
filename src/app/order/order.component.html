@@ -1,0 +1,43 @@
+<h3>주문 목록</h3>
+<div *ngIf="items.length > 0">
+  <div *ngFor="let item of items">
+    <div class="row">
+      <div class="col col-6">
+        <div class="row b-t-1 bg-white">
+          <div class="col col-2">
+            <img src="{{item.img}}" style="width: 100%;" />
+          </div>
+          <div class="col col-4">
+            {{item.name}}
+            <br />
+            {{item.number}}잔
+            <br />
+            {{item.total}}원
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="items.length === 0" class="d-flex-center py-3">
+  잘못된 접근입니다.
+</div>
+<div *ngIf="message.length > 0" class="alert alert-success">
+  {{message}}
+</div>
+<form *ngIf="message.length === 0" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <h3>사용자 등록</h3>
+  <div>
+    <label for="account">계정</label>
+    <input type="text" id="account" formControlName="account" />
+  </div>
+  <div>
+    <label for="password">비밀번호</label>
+    <input type="password" id="password" formControlName="password" />
+  </div>
+  <div>
+    <label for="name">이름</label>
+    <input type="text" id="name" formControlName="name" />
+  </div>
+  <button class="btn btn-primary" type="submit">주문 접수</button>
+</form>

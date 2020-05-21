@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { products } from '../utils/products';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'product-list',
@@ -10,7 +11,12 @@ import { products } from '../utils/products';
 export class ProductList {
   public products : Array<any> = products;
 
-  public addToCart (_id) : void {
-    console.log(_id)
+  constructor (private cartService:CartService) {
+
+  }
+
+  public addToCart (product) {
+    this.cartService.addToCart(product);
+    window.alert(`${product.name} 1잔을 주문 리스트에 추가하였습니다.`)
   }
 }
