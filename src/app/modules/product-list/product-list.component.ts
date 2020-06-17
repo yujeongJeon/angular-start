@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { products } from '../utils/products';
-import { CartService } from '../cart.service';
+import { products } from '../../utils/products';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'product-list',
