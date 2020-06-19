@@ -1,0 +1,6 @@
+<div class="content" *ngIf="_products as products">
+  <div><h5>전체 {{products.length}}개</h5></div>
+  <ol *ngFor="let item of products">
+    <li class="li-item"><app-view-item [item]="item"></app-view-item></li>
+  </ol>
+</div>
