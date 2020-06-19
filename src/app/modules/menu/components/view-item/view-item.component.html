@@ -1,0 +1,23 @@
+<a href="#" class="card-menu" *ngIf="item">
+  <span class="img-item">
+    <img [attr.src]="item.image" />
+  </span>
+  <div class="item-info">
+    <p class="my-0">
+      {{item.title}}
+      <ng-container *ngIf="item.isSale && item.salePrice > 0">
+        <span class="badge badge-primary">sale</span>
+      </ng-container>
+      <ng-container *ngIf="item.isBest">
+        <span class="badge badge-danger">best</span>
+      </ng-container>
+    </p>
+    <div class="item-desc">{{item.description}}</div>
+    <div class="item-price">
+      <span [class.strikeThrough]="item.isSale">{{item.price}}원</span>
+      <ng-container *ngIf="item.isSale && item.salePrice > 0">
+        <span class="item-sale-price">{{item.salePrice}}원</span>
+      </ng-container>
+    </div>
+  </div>
+</a>

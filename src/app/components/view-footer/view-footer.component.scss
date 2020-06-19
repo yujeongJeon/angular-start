@@ -1,0 +1,21 @@
+.footer {
+  border-top: 1px solid #d8d8d8;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ababab;
+  text-align: center;
+
+  .btn-block {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #d8d8d8;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+}
