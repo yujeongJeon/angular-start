@@ -243,6 +243,12 @@ body {
     color: #212529;
     text-decoration: none;
   }
+
+  &.small {
+    padding: .15rem .375rem;
+    font-size: .875rem;
+    border-radius: .175rem;
+  }
 }
 
 button:not(:disabled),
@@ -297,8 +303,20 @@ button:not(:disabled),
   }
 }
 
+.p-0 {
+  padding: 0;
+}
+
 .p-3 {
   padding: 1rem;
+}
+
+.pr-0 {
+  padding-right: 0;
+}
+
+.pl-0 {
+  padding-left: 0;
 }
 
 .py-3 {

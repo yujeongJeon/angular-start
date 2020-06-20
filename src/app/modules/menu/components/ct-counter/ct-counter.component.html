@@ -1,0 +1,19 @@
+<div class="row no_gutter counter">
+  <div class="col-12 px-0 d-flex-between">
+    <button
+      class="btn-square"
+      (click)="decrease.emit()"
+      [disabled]="count < 1"
+    >
+      -
+    </button>
+    {{ count }}
+    <button
+      class="btn-square"
+      (click)="increase.emit()"
+      [disabled]="count > 9"
+    >
+      +
+    </button>
+  </div>
+</div>

@@ -9,6 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ViewHeaderComponent } from './components/view-header/view-header.component';
+import { CtCounterComponent } from './modules/menu/components/ct-counter/ct-counter.component';
+import { CtOrderListComponent } from './modules/menu/components/ct-order-list/ct-order-list.component';
+import { KrCurrencyPipe } from './pipes/kr-currency.pipe';
+import { ViewOrderItemComponent } from './modules/menu/components/view-order-item/view-order-item.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { ViewHeaderComponent } from './components/view-header/view-header.compon
     ViewWrapperComponent,
     ViewFooterComponent,
     PwHomeComponent,
-    ViewItemComponent
+    ViewItemComponent,
+    CtCounterComponent,
+    CtOrderListComponent,
+    ViewOrderItemComponent,
+    KrCurrencyPipe
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-let array:Array<string> = [];
-
 // decorator: 설정 파일 개념
 @Component({
   selector: 'app-root',
@@ -9,7 +7,4 @@ let array:Array<string> = [];
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
-  constructor() {
-  }
-}
+export class AppComponent {}

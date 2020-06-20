@@ -3,6 +3,8 @@ import latte from '../../assets/images/latte.png';
 import caramel from '../../assets/images/caramel.png';
 import mocha from '../../assets/images/mocha.png';
 import banilla from '../../assets/images/banilla.png';
+import americino from '../../assets/images/americino.png';
+import ot from '../../assets/images/ot.png';
 
 /**
  * interface Coffee {
@@ -71,5 +73,27 @@ export const products = [
     salePrice: 0,
     salePercent: 0,
     isBest: true
+  },
+  {
+    productId: `PRD006`,
+    image: americino,
+    title: `아메리치노 라떼`,
+    price: 6200,
+    description: `흑당 시럽의 진한 달콤함과 크리미하고 달콤한 우유가 조화로운 아이스 라떼입니다.`,
+    isSale: false,
+    salePrice: 0,
+    salePercent: 0,
+    isBest: true
+  },
+  {
+    productId: `PRD007`,
+    image: ot,
+    title: `오트밀 라떼`,
+    price: 4500,
+    description: `오트밀이 씹히는 건강한 리얼 오트밀 라떼입니다.`,
+    isSale: false,
+    salePrice: 0,
+    salePercent: 0,
+    isBest: false
   }
 ]
