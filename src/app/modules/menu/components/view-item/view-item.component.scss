@@ -3,11 +3,17 @@
   display: block;
   overflow: hidden;
   text-decoration: none;
+
+  &.active{
+    background-color: #fafafa;
+    border-radius: .25rem;
+  }
+
   .img-item {
     float: left;
     position: relative;
-    width: 90px;
-    height: 90px;
+    width: 92px;
+    height: 92px;
 
     img {
       position: relative;
@@ -18,7 +24,7 @@
 
   .item-info {
     overflow: hidden;
-    height: 90px;
+    height: 92px;
     padding: 5px 0 0 15px;
     font-size: 15px;
     line-height: 18px;

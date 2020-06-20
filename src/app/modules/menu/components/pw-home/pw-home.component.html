@@ -1,6 +1,18 @@
 <div class="content" *ngIf="_products as products">
-  <div><h5>전체 {{products.length}}개</h5></div>
+  <ng-container *ngIf="_orders as orders">
+    <app-ct-order-list *ngIf="orders.length>0" [orders]="orders">
+    </app-ct-order-list>
+  </ng-container>  
+  <div>
+    <h5>전체 {{ products.length }}개</h5>
+  </div>
   <ol *ngFor="let item of products">
-    <li class="li-item"><app-view-item [item]="item"></app-view-item></li>
+    <li class="li-item">
+      <app-view-item
+        [item]="item"
+        (addOrder)="addOrder($event)"
+        (removeOrder)="removeOrder($event)"
+      ></app-view-item>
+    </li>
   </ol>
 </div>
