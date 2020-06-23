@@ -1,11 +1,23 @@
+import { ViewWrapperComponent } from './components/view-wrapper/view-wrapper.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  // { path: "", component: ProductList },
-  // { path: "products/:productId", component: ProductDetail },
-  // { path: 'cart', component: CartComponent },
-  // { path: 'order', component: OrderComponent }
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'menu'
+  },
+  {
+    path: '',
+    component: ViewWrapperComponent,
+    children: [
+      {
+        path: 'menu',
+        loadChildren: () => import('./modules/menu/menu.module').then(mod => mod.MenuModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({
