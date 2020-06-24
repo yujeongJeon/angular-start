@@ -24,3 +24,4 @@
   </a>
   <app-ct-counter [count]="item.count" (increase)="increase()" (decrease)="decrease()" *ngIf="isOpen"></app-ct-counter>
 </ng-container>
+<button class="btn btn-link btn-search" [class.openPosition]="isOpen" (click)="onClick($event)"><img [attr.src]="searchImg" [attr.width]="16" /></button>
