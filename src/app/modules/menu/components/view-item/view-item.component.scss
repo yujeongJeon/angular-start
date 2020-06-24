@@ -1,3 +1,8 @@
+:host {
+  position: relative;
+  display: block;
+}
+
 .card-menu {
   background-color: #fff;
   display: block;
@@ -25,7 +30,7 @@
   .item-info {
     overflow: hidden;
     height: 92px;
-    padding: 5px 0 0 15px;
+    padding: 5px 3px 0 15px;
     font-size: 15px;
     line-height: 18px;
     color: #222;
@@ -46,5 +51,15 @@
         font-weight: 700;
       }
     }
+  }
+}
+
+.btn-search {
+  position: absolute;
+  bottom: 9px;
+  right: 7px;
+
+  &.openPosition {
+    bottom: 42px;
   }
 }

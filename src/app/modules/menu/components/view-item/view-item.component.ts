@@ -1,3 +1,4 @@
+import { SEARCH_ICON } from './../../consts';
 import {
   Component,
   Input,
@@ -6,6 +7,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-item',
@@ -15,6 +17,7 @@ import {
 })
 export class ViewItemComponent {
   _item?: Order.OrderDetail;
+  searchImg = SEARCH_ICON;
 
   @Input()
   set item(item: Product.Coffee) {
@@ -57,5 +60,10 @@ export class ViewItemComponent {
     );
   }
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  onClick(e) {
+    e.preventDefault();
+    this.router.navigate([`menu/detail/${this._item.productId}`])
+  }
+
+  constructor(private changeDetectorRef: ChangeDetectorRef, private router:Router) {}
 }

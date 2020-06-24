@@ -249,6 +249,10 @@ body {
     font-size: .875rem;
     border-radius: .175rem;
   }
+
+  &.btn-link {
+    padding: 0;
+  }
 }
 
 button:not(:disabled),
@@ -447,6 +451,10 @@ button:not(:disabled),
   &.fade {
     transition: opacity 0.15s linear;
   }
+}
+
+.d-inline-block {
+  display: inline-block;
 }
 
 .d-flex-center {
