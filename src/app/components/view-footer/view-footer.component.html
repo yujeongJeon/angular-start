@@ -1,11 +1,11 @@
 <div class="row bottom footer">
-  <div class="col-4 btn-block">
+  <div class="col-4 btn-block" [class.active]="url === '/menu'">
     MENU
   </div>
-  <div class="col-4 btn-block">
+  <div class="col-4 btn-block" [class.active]="url === '/cart'">
     CART
   </div>
-  <div class="col-4 btn-block">
+  <div class="col-4 btn-block" [class.active]="url === '/mycoffee'">
     MY PAGE
   </div>
 </div>
