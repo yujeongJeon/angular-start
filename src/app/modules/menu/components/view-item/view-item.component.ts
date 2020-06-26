@@ -1,4 +1,3 @@
-import { SEARCH_ICON } from './../../consts';
 import {
   Component,
   Input,
@@ -17,7 +16,6 @@ import { Router } from '@angular/router';
 })
 export class ViewItemComponent {
   _item?: Order.OrderDetail;
-  searchImg = SEARCH_ICON;
 
   @Input()
   set item(item: Product.Coffee) {
