@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 
 @Component({
   selector: 'app-view-footer',
@@ -8,6 +8,12 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ViewFooterComponent implements OnInit {
   url;
+
+  onClick(tag){
+    this.router.navigate([`${tag}`]);
+    this.url = `/${tag}`;
+  }
+
   constructor(private router:Router) {}
 
   ngOnInit() {
