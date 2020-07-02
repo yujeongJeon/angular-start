@@ -1,3 +1,4 @@
+import { OrderService } from './../../../shared/services/order.service';
 import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core';
 import {
@@ -8,19 +9,10 @@ import {
 @Component({
   selector: 'app-ct-order-list',
   templateUrl: './ct-order-list.component.html',
-  styleUrls: ['./ct-order-list.component.scss']
+  styleUrls: ['./ct-order-list.component.scss'],
 })
 export class CtOrderListComponent implements OnInit, OnDestroy {
-  @Input() orders;
   hasToTop = false;
-
-  get totalPrice():number {
-    return this.orders.reduce((total: number, order: Order.OrderDetail): number => {
-      const thisPrice = order.isSale ? order.salePrice : order.price;
-      total += thisPrice * order.count;
-      return total;
-    }, 0);
-  }
 
   scroll$ = (e) => {
     e.target.scrollTop > 50
@@ -37,5 +29,13 @@ export class CtOrderListComponent implements OnInit, OnDestroy {
     window.removeEventListener('scroll', this.scroll$, true);
   }
 
-  constructor(private cdr:ChangeDetectorRef){}
+  constructor(private cdr:ChangeDetectorRef, private orderService:OrderService){}
+
+  get orders () {
+    return this.orderService.orderList;
+  }
+
+  get totalPrice(){
+    return this.orderService.totalPrice;
+  }
 }

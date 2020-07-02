@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { PwDetailComponent } from './components/pw-detail/pw-detail.component';
 import { KrCurrencyPipe } from './../../pipes/kr-currency.pipe';
 import { MenuRoutingModule } from './menu-routing.module';
@@ -22,6 +23,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     MenuRoutingModule,
+    SharedModule
   ],
   providers: []
 })

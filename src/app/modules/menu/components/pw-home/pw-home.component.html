@@ -1,8 +1,6 @@
 <div class="content" *ngIf="_products as products">
-  <ng-container *ngIf="_orders as orders">
-    <app-ct-order-list *ngIf="orders.length>0" [orders]="orders">
+    <app-ct-order-list>
     </app-ct-order-list>
-  </ng-container>  
   <div>
     <h5>전체 {{ products.length }}개</h5>
   </div>
@@ -10,8 +8,6 @@
     <li class="li-item">
       <app-view-item
         [item]="item"
-        (addOrder)="addOrder($event)"
-        (removeOrder)="removeOrder($event)"
       ></app-view-item>
     </li>
   </ol>

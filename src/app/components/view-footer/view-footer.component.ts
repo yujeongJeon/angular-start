@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: 'app-view-footer',

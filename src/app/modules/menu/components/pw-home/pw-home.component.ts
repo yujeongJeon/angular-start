@@ -9,18 +9,8 @@ import { products } from '../../../../utils/products';
 })
 export class PwHomeComponent implements OnInit {
   _products?:Product.Coffee[]
-  _orders:Order.OrderDetail[]=[]
 
   ngOnInit () {
     this._products = products;
-  }
-
-  addOrder(order:Order.OrderDetail){
-    this._orders.push(order);
-  }
-
-  removeOrder(id) {
-    const index = this._orders.findIndex(order => order.productId === id);
-    index > -1 && this._orders.splice(index, 1);
   }
 }
