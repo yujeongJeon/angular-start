@@ -2,9 +2,6 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Output,
-  EventEmitter,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -15,15 +12,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ViewItemComponent {
-  _item?: Order.OrderDetail;
-
-  @Input()
-  set item(item: Product.Coffee) {
-    this._item = { ...item, count: 0 };
-  }
-
-  @Output() addOrder = new EventEmitter<Order.OrderDetail>();
-  @Output() removeOrder = new EventEmitter<string>();
+  @Input() item?:Product.Coffee;
   isOpen: boolean = false;
 
   toggle(e) {
@@ -31,37 +20,10 @@ export class ViewItemComponent {
     this.isOpen = !this.isOpen;
   }
 
-  increase() {
-    setTimeout(
-      (_) => {
-        this._item.count++;
-
-        if (this._item.count === 1) {
-          this.addOrder.emit(this._item)
-        } 
-        this.changeDetectorRef.markForCheck()
-      },
-      0
-    );
-  }
-
-  decrease() {
-    setTimeout(
-      (_) => {
-        this._item.count--;
-        if (this._item.count < 1) {
-          this.removeOrder.emit(this._item.productId);
-        }
-        this.changeDetectorRef.markForCheck()
-      },
-      0
-    );
-  }
-
   onClick(e) {
     e.preventDefault();
-    this.router.navigate([`menu/detail/${this._item.productId}`])
+    this.router.navigate([`menu/detail/${this.item.productId}`])
   }
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, private router:Router) {}
+  constructor(private router:Router) {}
 }

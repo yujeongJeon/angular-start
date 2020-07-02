@@ -2,7 +2,7 @@
   <div class="col-12 px-0 d-flex-between">
     <button
       class="btn-square"
-      (click)="decrease.emit()"
+      (click)="decrease()"
       [disabled]="count < 1"
     >
       -
@@ -10,7 +10,7 @@
     {{ count }}
     <button
       class="btn-square"
-      (click)="increase.emit()"
+      (click)="increase()"
       [disabled]="count > 9"
     >
       +
