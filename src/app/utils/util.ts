@@ -13,7 +13,7 @@ export const mapValues = (obj:Object, fn:Function) => {
   .reduce((a, obj) => Object.assign(a, obj))
 }
 
-export const map = (set:Set<T> | Map<K, V>, fn:Function) => {
+export const map = (set, fn:Function) => {
   let arr = [];
   for(const elem of set) {
     const res = fn(elem);

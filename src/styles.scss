@@ -250,12 +250,21 @@ body {
     border-radius: .175rem;
   }
 
+  &.x-small {
+    font-size: .5rem;
+    border-radius: .05rem;
+  }
+
   &.btn-link {
     padding: 0;
   }
 
   &.btn-secondary {
     color: #a7acb1;
+  }
+
+  &.btn-danger {
+    color: #dc3545;
   }
 }
 

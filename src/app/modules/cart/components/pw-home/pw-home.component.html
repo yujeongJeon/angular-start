@@ -1,1 +1,30 @@
-this is cart
+<h3>주문 리스트</h3>
+<div class="row order-title" *ngIf="orderList.length > 0;else empty">
+  <div class="col-1"></div>
+  <div class="col-7">
+    메뉴
+  </div>
+  <div class="col-2 text-right">
+    금액
+  </div>
+  <div class="col-2 text-right">
+    수량
+  </div>
+  <div *ngFor="let order of orderList">
+    <div class="col-1"></div>
+    <div class="col-7">
+      {{order.name}}
+    </div>
+    <div class="col-2 text-right">
+      {{order.isSale ? order.salePrice : order.price}}
+    </div>
+    <div class="col-2 text-right">
+      {{order.count}}
+    </div>
+  </div>
+</div>
+<ng-template #empty>
+  <div class="col-12 d-flex-center empty">
+    커피가 비었습니다.
+  </div>
+</ng-template>

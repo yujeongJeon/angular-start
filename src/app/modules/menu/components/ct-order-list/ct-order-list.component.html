@@ -2,7 +2,9 @@
   <div class="col-12">
     <p class="text-title">주문 리스트</p>
     <div class="row order-item title">
-      <div class="col-8 pl-0">
+      <div class="col-1 pl-0">
+      </div>
+      <div class="col-7 p-0">
         메뉴
       </div>
       <div class="col-2 p-0 text-right">
@@ -13,11 +15,11 @@
       </div>
     </div>
     <ng-container *ngIf="orders">
-      <app-view-order-item *ngFor="let order of orders" [order]="order"></app-view-order-item>
+      <app-view-order-item *ngFor="let order of orders" [order]="order" (removeItem)="removeItem($event)"></app-view-order-item>
     </ng-container>
   </div>
   <div class="col-12 d-flex-between">
     <span class="total-price">총 {{totalPrice | krCurrency }}</span>
-    <button class="btn btn-primary small">주문하기</button>
+    <button class="btn btn-primary small" (click)="goToCart()">주문하기</button>
   </div>
 </div>
