@@ -1,6 +1,5 @@
 import { SharedModule } from './../shared/shared.module';
 import { PwDetailComponent } from './components/pw-detail/pw-detail.component';
-import { KrCurrencyPipe } from './../../pipes/kr-currency.pipe';
 import { MenuRoutingModule } from './menu-routing.module';
 import { CtOrderListComponent } from './components/ct-order-list/ct-order-list.component';
 import { CtCounterComponent } from './components/ct-counter/ct-counter.component';
@@ -17,8 +16,7 @@ import { CommonModule } from '@angular/common';
     ViewItemComponent,
     ViewOrderItemComponent,
     CtCounterComponent,
-    CtOrderListComponent,
-    KrCurrencyPipe
+    CtOrderListComponent
   ],
   imports: [
     CommonModule,

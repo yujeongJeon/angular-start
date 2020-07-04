@@ -11,7 +11,10 @@ export class ViewOrderItemComponent {
   @Output() removeItem = new EventEmitter<string>();
 
   get price(){
-    return this.order.isSale ? this.order.salePrice : this.order.price;
+    const {isSale, salePrice, price, count}=this.order;
+    
+    const flatPrice = isSale ? salePrice : price;
+    return flatPrice * count;
   }
 
   get count(){

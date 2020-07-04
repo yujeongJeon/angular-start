@@ -21,6 +21,11 @@ body {
       margin-right: auto;
     }
   }
+
+  dt,dd {
+    margin: 0;
+    padding: 0;
+  }
   
   @media (min-width: 576px) {
     .container-fluid .contents {
@@ -266,6 +271,10 @@ body {
   &.btn-danger {
     color: #dc3545;
   }
+
+  &.block {
+    width: 100%;
+  }
 }
 
 button:not(:disabled),
@@ -358,6 +367,10 @@ button:not(:disabled),
 
 .ml-3 {
   margin-left: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
 }
 
 .mb-3 {

@@ -11,6 +11,18 @@ export class PwHomeComponent {
   get orderList(){
     return this.orderService.orderList;
   }
+
+  get totalCount(){
+    return this.orderService.total;
+  }
+
+  get totalPrice(){
+    return this.orderService.totalPrice;
+  }
+
+  removeCoffee (productId) {
+    this.orderService.removeCoffee(productId);
+  }
   
   constructor(private orderService:OrderService) {}
 }
