@@ -1,4 +1,4 @@
-<div class="row bottom footer">
+<div class="row bottom footer" *ngIf="url !== '/order'">
   <div class="col-4 btn-block" [class.active]="url === '/menu'" (click)="onClick('menu')">
     MENU
   </div>

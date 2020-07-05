@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OrderService } from './../../../shared/services/order.service';
 import { Component, ChangeDetectionStrategy } from "@angular/core";
 
@@ -23,6 +24,10 @@ export class PwHomeComponent {
   removeCoffee (productId) {
     this.orderService.removeCoffee(productId);
   }
+
+  gotoOrder(){
+    this.router.navigate(['order']);
+  }
   
-  constructor(private orderService:OrderService) {}
+  constructor(private orderService:OrderService, private router:Router) {}
 }

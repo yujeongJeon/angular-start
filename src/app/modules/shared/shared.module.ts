@@ -1,3 +1,4 @@
+import { StorageService } from './services/storage.service';
 import { KrCurrencyPipe } from './components/kr-currency.pipe';
 import { OrderService } from './services/order.service';
 import { NgModule, ModuleWithProviders } from "@angular/core";
@@ -11,7 +12,8 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        OrderService
+        OrderService,
+        StorageService
       ]
     }
   }
