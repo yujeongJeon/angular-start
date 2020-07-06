@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, RouterEvent } from '@angular/router';
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -11,10 +11,13 @@ export class ViewFooterComponent implements OnInit {
 
   onClick(tag){
     this.router.navigate([`${tag}`]);
-    this.url = `/${tag}`;
   }
 
-  constructor(private router:Router) {}
+  constructor(private router:Router) {
+    router.events.subscribe((e: RouterEvent) => {
+     this.url = e.url;
+   });
+  }
 
   ngOnInit() {
     this.url = this.router.url;

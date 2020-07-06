@@ -19,7 +19,6 @@
     "@angular/platform-browser": "~9.1.7",
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
-    "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -40,6 +39,7 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "lodash": "^4.17.15",
     "protractor": "^7.0.0",
+    "rxjs": "^6.5.5",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"

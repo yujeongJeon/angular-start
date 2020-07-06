@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: 'app-view-order-item',
@@ -8,9 +8,13 @@ import { Component, Input } from "@angular/core";
 })
 export class ViewOrderItemComponent {
   @Input() order?:Order.OrderDetail;
+  @Output() removeItem = new EventEmitter<string>();
 
   get price(){
-    return this.order.isSale ? this.order.salePrice : this.order.price;
+    const {isSale, salePrice, price, count}=this.order;
+    
+    const flatPrice = isSale ? salePrice : price;
+    return flatPrice * count;
   }
 
   get count(){

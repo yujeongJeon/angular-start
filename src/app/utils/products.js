@@ -6,6 +6,8 @@ import banilla from '../../assets/images/banilla.png';
 import americino from '../../assets/images/americino.png';
 import ot from '../../assets/images/ot.png';
 
+import ico_money from '../../assets/images/i_money.png';
+
 /**
  * interface Coffee {
     productId: string;
@@ -97,3 +99,5 @@ export const products = [
     isBest: false
   }
 ]
+
+export const moneyIcon = ico_money;

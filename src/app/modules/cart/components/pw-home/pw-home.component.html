@@ -1,1 +1,66 @@
-this is cart
+<h3>주문 리스트</h3>
+<div class="wrapper" *ngIf="orderList.length > 0; else empty">
+  <table>
+    <colgroup>
+      <col width="20px" />
+      <col />
+      <col width="80px" />
+      <col width="35px" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th></th>
+        <th>메뉴</th>
+        <th>금액</th>
+        <th>수량</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderList">
+        <td class="td_btn">
+          <button
+            class="btn btn-link small btn-danger"
+            (click)="removeCoffee(order.productId)"
+          >
+            X
+          </button>
+        </td>
+        <td>
+          <img [attr.src]="order.image" [attr.width]="40" />
+          {{ order.title }}
+        </td>
+        <td>
+          {{
+            (order.isSale ? order.salePrice : order.price) * order.count
+              | krCurrency
+          }}
+        </td>
+        <td>{{ order.count }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="order_calculator">
+    <div class="product_price_detail">
+      <dl class="product_price">
+        <dt>총 수량</dt>
+        <dd><span class="price">{{totalCount}}잔</span></dd>
+      </dl>
+    </div>
+    <div class="product_price_total">
+      <dl>
+        <dt>총 주문금액</dt>
+        <dd class="txt_point">
+          <span class="price">{{totalPrice | krCurrency}}</span>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="d-flex-center mt-3">
+    <button class="btn btn-primary block" (click)="gotoOrder()">주문하기</button>
+  </div>
+</div>
+<ng-template #empty>
+  <div class="col-12 d-flex-center empty">
+    커피가 비었습니다.
+  </div>
+</ng-template>

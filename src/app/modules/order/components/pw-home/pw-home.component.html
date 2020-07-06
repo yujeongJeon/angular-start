@@ -1,0 +1,59 @@
+<div class="d-flex-between">
+  <h3>
+    주문 및 결제
+  </h3>
+  <button class="btn btn-danger p-0" (click)="cancelOrder()">
+    주문 취소
+  </button>
+</div>
+<div class="final_orders">
+  <div class="header">
+    최종 결제할 메뉴
+  </div>
+  <div *ngFor="let order of orderList" class="row no_gutter order_item">
+    <div class="col-6 order_content">
+      <p class="title">{{ order.title }}</p>
+      <div class="img_box">
+        <span class="mr-1">
+          <img [attr.src]="ico" [attr.height]="16" />
+        </span>
+        {{ order.count }}잔
+      </div>
+    </div>
+    <div class="col-6 d-flex-end order_content">
+      {{ getPrice(order) | krCurrency }}
+    </div>
+  </div>
+  <div class="header">
+    결제
+  </div>
+  <div class="btn_group">
+    <button
+      class="btn block btn_payment"
+      (click)="setPayment(1)"
+      [class.active]="payment === 1"
+    >
+      카드 결제
+    </button>
+    <button
+      class="btn block btn_payment"
+      (click)="setPayment(2)"
+      [class.active]="payment === 2"
+    >
+      휴대폰 결제
+    </button>
+    <button
+      class="btn block btn_payment"
+      (click)="setPayment(3)"
+      [class.active]="payment === 3"
+    >
+      매장 결제
+    </button>
+  </div>
+  <div class="btn_footer">
+    <button class="btn btn-primary block" [disabled]="payment<1" #orderBtn>
+      <p>{{ totalPrice | krCurrency }}</p>
+      결제 및 주문하기
+    </button>
+  </div>
+</div>

@@ -1,9 +1,12 @@
 <div class="row order-item" *ngIf="order">
-  <div class="col-8 pl-0">
+  <div class="col-1 pl-0">
+    <button class="btn btn-link btn-danger x-small" (click)="removeItem.emit(order.productId)">X</button>
+  </div>
+  <div class="col-7 p-0">
     {{ order.title }}
   </div>
   <div class="col-2 p-0 text-right">
-    {{ price }}
+    {{ price | krCurrency }}
   </div>
   <div class="col-2 text-right pr-0">
     {{ count }}

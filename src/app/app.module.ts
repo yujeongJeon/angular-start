@@ -1,3 +1,5 @@
+import { PersistStateModule } from './modules/persist-state/persist-state.module';
+import { SharedModule } from './modules/shared/shared.module';
 import { ViewFooterComponent } from './components/view-footer/view-footer.component';
 import { ViewWrapperComponent } from './components/view-wrapper/view-wrapper.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +19,8 @@ import { ViewHeaderComponent } from './components/view-header/view-header.compon
   ],
   imports: [
     BrowserModule,
+    SharedModule.forRoot(),
+    PersistStateModule.forRoot(),
     //ReactiveFormsModule,
     AppRoutingModule
   ],

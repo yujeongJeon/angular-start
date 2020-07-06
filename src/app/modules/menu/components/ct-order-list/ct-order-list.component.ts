@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { OrderService } from './../../../shared/services/order.service';
 import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core';
@@ -28,8 +29,17 @@ export class CtOrderListComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     window.removeEventListener('scroll', this.scroll$, true);
   }
+  
+  goToCart(){
+    this.router.navigate(['cart']);
+  }
 
-  constructor(private cdr:ChangeDetectorRef, private orderService:OrderService){}
+  removeItem(productId:string){
+    this.orderService.removeCoffee(productId);
+    this.cdr.markForCheck();
+  }
+
+  constructor(private cdr:ChangeDetectorRef, private orderService:OrderService, private router:Router){}
 
   get orders () {
     return this.orderService.orderList;

@@ -27,7 +27,7 @@ export class OrderService{
   deleteCoffee(coffee:Product.Coffee) {
     const {productId} = coffee;
 
-    const idx = this.orderByArray.findIndex(order => order === productId);
+    const idx = this.orderByArray.findIndex(id => id === productId);
 
     idx > -1 && this.orderByArray.splice(idx, 1);
 
@@ -38,7 +38,12 @@ export class OrderService{
     } 
   }
 
-  get total () {
+  removeCoffee(productId:string) {
+    delete this.orderById[productId];
+    this.orderByArray = this.orderByArray.filter(id => id !== productId)
+  }
+
+  get totalCount () {
     return this.orderByArray.length;
   }
 
@@ -54,7 +59,12 @@ export class OrderService{
     return this.orderById[id];
   }
 
-  get orderList () {
+  removeAll(){
+    this.orderByArray = [];
+    this.orderById = {};
+  }
+
+  get orderList ():Order.OrderDetail[] {
     const orderSet = new Set(this.orderByArray);
     return map(orderSet, id => this.getCoffee(id));
   }

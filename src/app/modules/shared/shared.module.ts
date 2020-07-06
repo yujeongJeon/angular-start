@@ -1,7 +1,20 @@
+import { StorageService } from './services/storage.service';
+import { KrCurrencyPipe } from './components/kr-currency.pipe';
 import { OrderService } from './services/order.service';
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 
 @NgModule({
-  providers: [OrderService],
+  declarations: [KrCurrencyPipe],
+  exports: [KrCurrencyPipe]
 })
-export class SharedModule {}
+export class SharedModule {
+  static forRoot():ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        OrderService,
+        StorageService
+      ]
+    }
+  }
+}
