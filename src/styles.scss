@@ -359,8 +359,16 @@ button:not(:disabled),
   padding-right: 0;
 }
 
+.pr-3 {
+  padding-right: 1rem;
+}
+
 .pl-0 {
   padding-left: 0;
+}
+
+.pl-3 {
+  padding-left: 1rem;
 }
 
 .pt-3 {
@@ -383,12 +391,32 @@ button:not(:disabled),
   margin-right: .25rem;
 }
 
+.mr-2 {
+  margin-right: .5rem;
+}
+
+.ml-1 {
+  margin-left: .25rem;
+}
+
+.ml-2 {
+  margin-left: .5rem;
+}
+
 .ml-3 {
   margin-left: 1rem;
 }
 
 .mt-3 {
   margin-top: 1rem;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-1 {
+  margin-bottom: .25rem;
 }
 
 .mb-3 {
@@ -529,7 +557,15 @@ button:not(:disabled),
 }
 
 .b-t-1 {
-  border-top: 1px solid #c8ced3;
+  border-top: 1px solid #dbdbdb;
+}
+
+.b-r-1 {
+  border-right: 1px solid #dbdbdb;
+}
+
+.b-l-1 {
+  border-left: 1px solid #dbdbdb;
 }
 
 .bg-white {
@@ -606,4 +642,26 @@ dl, ul, ol, menu, li {
 
 .border-top {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+
+.full {
+  margin: 0 -15px;
+  .sub_header {
+    width: 100%;
+    background-color: #e9e9e9;
+    padding: 6px 15px;
+  }
+
+  .sub_content {
+    height: 70px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.h-inherit {
+  height: inherit;
 }

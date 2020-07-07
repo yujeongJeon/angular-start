@@ -1,0 +1,48 @@
+<div class="d-flex-between">
+  <h3>주문 성공!</h3>
+  <button class="btn btn-link p-0" (click)="goToHome()">
+    홈으로
+  </button>
+</div>
+<div class="full" *ngIf="latestOrder">
+  <div class="sub_header">
+    주문한 메뉴
+  </div>
+  <div class="menu_list">
+    <div *ngFor="let menu of latestOrder.orderList" class="menu sub_content">
+      <div class="pos_left">
+        <div class="img">
+          <img [attr.src]="menu.image" [attr.width]="37" />
+        </div>
+        <div class="content">
+          <p class="mb-1">{{menu.title}}</p>
+          {{menu.count}}잔
+        </div>
+      </div>
+      <div class="pos_right">{{getPrice(menu) | krCurrency}}</div>
+    </div>
+  </div>
+  <div class="d-flex-between total header">
+    <span>수량</span>
+    <span>금액</span>
+  </div>
+  <div class="d-flex-between total">
+    <span>{{latestOrder.totalCount}}잔</span>
+    <span>{{latestOrder.totalPrice | krCurrency}}</span>
+  </div>
+  <div class="sub_header">
+    주문자
+  </div>
+  <div class="sub_content order_info">
+    <span class="pr-3 header">주문자명</span>
+    <span class="pl-3 b-l-1">{{latestOrder.name}}</span>
+  </div>
+  <div class="sub_content order_info text_section">
+    <span class="pr-3 b-r-1 header">기타 요청사항</span>
+    <span class="pl-3 requirement">{{latestOrder.extraRequirement}}</span>
+  </div>
+  <div class="sub_content order_info">
+    <span class="pr-3 b-r-1 header">결제 수단</span>
+    <span class="pl-3">{{payment}}</span>
+  </div>
+</div>

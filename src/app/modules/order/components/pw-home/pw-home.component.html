@@ -6,8 +6,8 @@
     주문 취소
   </button>
 </div>
-<div class="final_orders">
-  <div class="header">
+<div class="full">
+  <div class="sub_header">
     최종 결제할 메뉴
   </div>
   <div *ngFor="let order of orderList" class="row no_gutter order_item">
@@ -24,7 +24,7 @@
       {{ getPrice(order) | krCurrency }}
     </div>
   </div>
-  <div class="header">
+  <div class="sub_header">
     결제
   </div>
   <div class="btn_group">
@@ -56,4 +56,9 @@
       결제 및 주문하기
     </button>
   </div>
+</div>
+<div class="loading" #loading *ngIf="loading$">
+  ...
+  <br/>
+  주문 진행 중
 </div>

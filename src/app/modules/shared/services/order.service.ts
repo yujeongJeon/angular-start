@@ -47,7 +47,7 @@ export class OrderService{
     return this.orderByArray.length;
   }
 
-  get totalPrice () {
+  get totalPrice (): number {
     const coffees = Object.values(this.orderById);
     
     const calcPrices = coffees.map(coffee => coffee.count * (coffee.isSale ? coffee.salePrice : coffee.price));
