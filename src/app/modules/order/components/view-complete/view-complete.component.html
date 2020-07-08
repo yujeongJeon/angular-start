@@ -1,7 +1,7 @@
 <div class="d-flex-between">
-  <h3>주문 성공!</h3>
+  <h3>주문 성공 😍</h3>
   <button class="btn btn-link p-0" (click)="goToHome()">
-    홈으로
+    돌아가기
   </button>
 </div>
 <div class="full" *ngIf="latestOrder">
@@ -19,7 +19,7 @@
           {{menu.count}}잔
         </div>
       </div>
-      <div class="pos_right">{{getPrice(menu) | krCurrency}}</div>
+      <div class="pos_right">{{menu.unitPrice | krCurrency}}</div>
     </div>
   </div>
   <div class="d-flex-between total header">

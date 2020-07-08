@@ -1,3 +1,4 @@
+import { ViewFailureComponent } from './components/view-failure/view-failure.component';
 import { ViewCompleteComponent } from './components/view-complete/view-complete.component';
 import { PwHomeComponent } from './components/pw-home/pw-home.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,6 +12,10 @@ const routes:Routes = [
   {
     path: 'complete',
     component: ViewCompleteComponent,
+  },
+  {
+    path: 'failure',
+    component: ViewFailureComponent,
   },
 ]
 

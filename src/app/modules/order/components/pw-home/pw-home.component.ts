@@ -43,11 +43,6 @@ export class PwHomeComponent implements AfterViewInit, OnDestroy {
     return this.orderService.totalPrice;
   }
 
-  getPrice(order: Order.OrderDetail) {
-    const flatPrice = order.isSale ? order.salePrice : order.price;
-    return flatPrice * order.count;
-  }
-
   getPaymentCode(payment): PAYMENT_CODE {
     switch (payment) {
       case 1:
@@ -96,7 +91,7 @@ export class PwHomeComponent implements AfterViewInit, OnDestroy {
             extraRequirement: '얼음은 적게 주세요',
           });
         }),
-        delay(1000)
+        delay(1000),
       )
       .subscribe(() => {
         subject.next({ status: '1000' });
@@ -133,7 +128,7 @@ export class PwHomeComponent implements AfterViewInit, OnDestroy {
               this.router.navigate(['/order/complete']);
               break;
             case '9000':
-              //this.router.navigate(['/order/complete']);
+              this.router.navigate(['/order/failure']);
               break;
             default:
               break;

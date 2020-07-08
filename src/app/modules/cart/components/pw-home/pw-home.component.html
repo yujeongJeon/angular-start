@@ -31,7 +31,7 @@
         </td>
         <td>
           {{
-            (order.isSale ? order.salePrice : order.price) * order.count
+            order.unitPrice
               | krCurrency
           }}
         </td>

@@ -1,3 +1,4 @@
+import { ViewFailureComponent } from './components/view-failure/view-failure.component';
 import { ViewCompleteComponent } from './components/view-complete/view-complete.component';
 import { SharedModule } from './../shared/shared.module';
 import { OrderRoutingModule } from './order-routing.module';
@@ -8,7 +9,8 @@ import { NgModule } from "@angular/core";
 @NgModule({
   declarations: [
     PwHomeComponent,
-    ViewCompleteComponent
+    ViewCompleteComponent,
+    ViewFailureComponent
   ],
   imports: [
     CommonModule,

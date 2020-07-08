@@ -19,11 +19,6 @@ export class ViewCompleteComponent {
     const idx = this.latestOrder.payment;
     return PAYMENT_TEXT[idx];
   }
-  
-  getPrice({isSale, salePrice, price, count}) {
-    const flatPrice = isSale ? salePrice : price;
-    return flatPrice * count;
-  }
 
   goToHome(){
     this.router.navigate(['/'])

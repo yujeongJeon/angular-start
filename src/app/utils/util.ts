@@ -23,7 +23,12 @@ export const map = (set, fn: Function) => {
   return arr;
 };
 
+export const firstElem = (arr) => arr.length > 0 ? arr[0] : null;
+
 export const lastElem = (arr) => (arr.length > 0 ? arr[arr.length - 1] : null);
 
 export const getKeyByValue = (obj, value) =>
   Object.keys(obj).find((key) => obj[key] === value);
+
+export const fillObject = (obj, value) => 
+  Object.keys(obj).map(key => obj[key] = value)

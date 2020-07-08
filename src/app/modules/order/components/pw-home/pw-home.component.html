@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="col-6 d-flex-end order_content">
-      {{ getPrice(order) | krCurrency }}
+      {{ order.unitPrice | krCurrency }}
     </div>
   </div>
   <div class="sub_header">

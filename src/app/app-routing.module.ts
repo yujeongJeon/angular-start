@@ -9,6 +9,11 @@ const routes: Routes = [
     redirectTo: 'menu'
   },
   {
+    path: 'mycoffee',
+    pathMatch: 'full',
+    redirectTo: 'mycoffee/1'
+  },
+  {
     path: '',
     component: ViewWrapperComponent,
     children: [
@@ -23,6 +28,10 @@ const routes: Routes = [
       {
         path: 'order',
         loadChildren: () => import('./modules/order/order.module').then(mod => mod.OrderModule)
+      },
+      {
+        path: 'mycoffee/:tabId',
+        loadChildren: () => import('./modules/mycoffee/mycoffee.module').then(mod => mod.MycoffeeModule)
       }
     ]
   }
