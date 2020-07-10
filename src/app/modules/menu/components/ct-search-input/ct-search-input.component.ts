@@ -6,7 +6,16 @@ import {
   Input,
 } from '@angular/core';
 import { of, fromEvent, from } from 'rxjs';
-import { debounceTime, switchMap, map, tap, filter } from 'rxjs/operators';
+import {
+  debounceTime,
+  switchMap,
+  map,
+  tap,
+  filter,
+  concatMap,
+  exhaust,
+  exhaustMap,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-ct-search',
@@ -17,6 +26,9 @@ export class CtSearchComponent implements AfterViewInit {
   @Input() data: Product.Coffee[];
   @ViewChild('input', { static: true })
   input: ElementRef<HTMLInputElement>;
+
+  @ViewChild('btn', { static: true })
+  btn: ElementRef<HTMLButtonElement>;
 
   doSearch(val) {
     return of(this.data).pipe(
@@ -38,5 +50,9 @@ export class CtSearchComponent implements AfterViewInit {
         switchMap((value) => this.doSearch(value))
       )
       .subscribe(console.log);
+
+    of(1,2,3).pipe(
+      exhaustMap((_id) => of(_id))
+    ).subscribe(console.log);
   }
 }
