@@ -1,3 +1,4 @@
+import { MenuService } from './services/menu.service';
 import { CtSearchComponent } from './components/ct-search-input/ct-search-input.component';
 import { SharedModule } from './../shared/shared.module';
 import { PwDetailComponent } from './components/pw-detail/pw-detail.component';

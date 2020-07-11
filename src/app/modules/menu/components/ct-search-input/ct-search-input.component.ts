@@ -1,44 +1,30 @@
+import { MenuService } from './../../services/menu.service';
 import {
   Component,
   ViewChild,
   ElementRef,
   AfterViewInit,
-  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
-import { of, fromEvent, from } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import {
   debounceTime,
   switchMap,
   map,
-  tap,
-  filter,
-  concatMap,
-  exhaust,
-  exhaustMap,
 } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ct-search',
   templateUrl: './ct-search-input.component.html',
   styleUrls: ['./ct-search-input.component.scss'],
+  providers: [MenuService]
 })
 export class CtSearchComponent implements AfterViewInit {
-  @Input() data: Product.Coffee[];
   @ViewChild('input', { static: true })
   input: ElementRef<HTMLInputElement>;
 
-  @ViewChild('btn', { static: true })
-  btn: ElementRef<HTMLButtonElement>;
-
-  doSearch(val) {
-    return of(this.data).pipe(
-      map((data) =>
-        data
-          .map((coffee: Product.Coffee) => coffee.title)
-          .filter((title) => !!title.includes(val))
-      )
-    );
-  }
+  @Output() setSearchResult = new EventEmitter<Product.Coffee[]>();
 
   ngAfterViewInit() {
     const input = this.input.nativeElement;
@@ -47,12 +33,12 @@ export class CtSearchComponent implements AfterViewInit {
       .pipe(
         debounceTime(300),
         map((e) => (<HTMLInputElement>e.target).value),
-        switchMap((value) => this.doSearch(value))
+        switchMap((value) => 
+          this.menuService.doSearchResult(value)
+        )
       )
-      .subscribe(console.log);
-
-    of(1,2,3).pipe(
-      exhaustMap((_id) => of(_id))
-    ).subscribe(console.log);
+      .subscribe((result) => this.setSearchResult.emit(result));
   }
+
+  constructor(private menuService:MenuService) {}
 }

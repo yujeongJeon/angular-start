@@ -32,3 +32,12 @@ export const getKeyByValue = (obj, value) =>
 
 export const fillObject = (obj, value) => 
   Object.keys(obj).map(key => obj[key] = value)
+
+export const isEmpty = (val) => {
+  if (typeof val === "string"
+  || Array.isArray(val)) {
+    return val.length === 0
+  }
+
+  return false;
+}
