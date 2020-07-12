@@ -1,15 +1,19 @@
 <div class="content" *ngIf="_products as products">
-    <app-ct-order-list>
-    </app-ct-order-list>
-    <app-ct-search (setSearchResult)="setSearchResult($event)"></app-ct-search>
-  <div>
-    <h5>전체 {{ products.length }}개</h5>
+  <app-ct-order-list> </app-ct-order-list>
+  <app-ct-search (setSearchResult)="setSearchResult($event)"></app-ct-search>
+  <div *ngIf="products.length > 0;else empty">
+    <div>
+      <h5>전체 {{ products.length }}개</h5>
+    </div>
+    <ol *ngFor="let item of products">
+      <li class="li-item">
+        <app-view-item [item]="item"></app-view-item>
+      </li>
+    </ol>
   </div>
-  <ol *ngFor="let item of products">
-    <li class="li-item">
-      <app-view-item
-        [item]="item"
-      ></app-view-item>
-    </li>
-  </ol>
+  <ng-template #empty>
+    <div class="d-flex-center empty">
+      <strong [style.color]="'#dbdbdb'">검색 결과가 없습니다.</strong>
+    </div>
+  </ng-template>
 </div>
