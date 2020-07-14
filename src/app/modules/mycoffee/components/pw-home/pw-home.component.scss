@@ -1,3 +1,40 @@
 i.i-coffee {
   font-size: 23px;
 }
+
+.tab_wrapper {
+  .tab {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .tab_title {
+      color: #c5c5c6;
+      width: 50%;
+      text-align: center;
+      height: 45px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #fff;
+
+      &.active {
+        color: #222;
+        border-bottom: 2px solid #222;
+      }
+    }
+  }
+
+  .tab_contents {
+    .tab_pane {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}

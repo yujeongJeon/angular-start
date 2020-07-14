@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'mycoffee',
     pathMatch: 'full',
-    redirectTo: 'mycoffee/1'
+    redirectTo: 'mycoffee/order'
   },
   {
     path: '',
