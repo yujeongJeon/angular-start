@@ -1,3 +1,8 @@
+.wrapper {
+  height: calc(100vh - 55px - 65px);
+  overflow-y: auto;
+}
+
 i.i-coffee {
   font-size: 23px;
 }
@@ -29,6 +34,7 @@ i.i-coffee {
   }
 
   .tab_contents {
+    padding: 10px 15px;
     .tab_pane {
       display: none;
 
@@ -36,5 +42,19 @@ i.i-coffee {
         display: block;
       }
     }
+  }
+}
+
+.date_marker {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 1px solid #e9e9e9; 
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: #555;
+
+  span {
+    background:#fff; 
+    padding:0 10px; 
   }
 }

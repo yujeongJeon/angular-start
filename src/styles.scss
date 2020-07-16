@@ -664,8 +664,16 @@ dl, ul, ol, menu, li {
     align-items: center;
     justify-content: flex-start;
   }
+
+  .full_content {
+    padding: 0 15px;
+  }
 }
 
 .h-inherit {
   height: inherit;
+}
+
+.font-xs {
+  font-size: .75rem;
 }

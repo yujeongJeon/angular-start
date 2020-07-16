@@ -1,30 +1,49 @@
-<h3>내 커피 다이어리 <i class="i-coffee">☕️</i></h3>
-<div class="tab_wrapper">
-  <ul class="tab">
-    <li
-      class="tab_title"
-      [class.active]="activeTab === 'order'"
-      (click)="toggleTab('order')"
-    >
-      주문 내역
-    </li>
-    <li
-      class="tab_title"
-      [class.active]="activeTab === 'review'"
-      (click)="toggleTab('review')"
-    >
-      내가 쓴 리뷰
-    </li>
-  </ul>
-  <div class="tab_contents">
-    <div class="tab_pane" [class.active]="activeTab === 'order'">
-      <app-view-order-item
-        *ngFor="let order of orders"
-        [orderList]="order.orderList"
-      ></app-view-order-item>
-    </div>
-    <div class="tab_pane" [class.active]="activeTab === 'review'">
-      이것슨 리뷰
+<div class="wrapper full">
+  <h3 class="full_content">내 커피 다이어리 <i class="i-coffee">☕️</i></h3>
+  <div class="tab_wrapper">
+    <ul class="tab">
+      <li
+        class="tab_title"
+        [class.active]="activeTab === 'order'"
+        (click)="toggleTab('order')"
+      >
+        주문 내역
+      </li>
+      <li
+        class="tab_title"
+        [class.active]="activeTab === 'review'"
+        (click)="toggleTab('review')"
+      >
+        내가 쓴 리뷰
+      </li>
+    </ul>
+    <div class="tab_contents full_content">
+      <div class="tab_pane" [class.active]="activeTab === 'order'">
+        <ng-container *ngIf="!!orders; else empty">
+          <ng-container
+            *ngFor="let order of orders; index as i; first as isFirst"
+          >
+            <div
+              class="date_marker"
+              *ngIf="isFirst || order.orderMonth !== orders[i - 1].orderMonth"
+            >
+              <span>{{ order.orderMonth }}월</span>
+            </div>
+            <app-view-order-item
+              (click)="gotoDetail(i)"
+              [orderList]="order.orderList"
+            ></app-view-order-item>
+          </ng-container>
+        </ng-container>
+        <ng-template #empty>
+          <div class="d-flex-center mt-3">
+            주문 내역이 없습니다.
+          </div>
+        </ng-template>
+      </div>
+      <div class="tab_pane" [class.active]="activeTab === 'review'">
+        이것슨 리뷰
+      </div>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { PAYMENT_TEXT } from './../../consts';
-import { lastElem } from './../../../../utils/util';
+import { firstElem } from './../../../../utils/util';
 import { LocalStorageService } from './../../../persist-state/services/local-storage.service';
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ViewCompleteComponent {
   get latestOrder() {
-    const orderList = this.localService.get('orders');
-    return lastElem(orderList);
+    const orders = this.localService.get('orders');
+    return firstElem(orders);
   }
 
   get payment() {

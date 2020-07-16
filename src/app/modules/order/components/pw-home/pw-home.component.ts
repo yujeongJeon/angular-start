@@ -1,3 +1,4 @@
+import { getDateTime } from './../../../../utils/util';
 import { LocalStorageService } from './../../../persist-state/services/local-storage.service';
 import { Router } from '@angular/router';
 import { PAYMENT_CODE } from './../../consts';
@@ -77,6 +78,7 @@ export class PwHomeComponent implements AfterViewInit, OnDestroy {
 
   saveOrder() {
     const subject = new Subject<{ [key: string]: string }>();
+    const { timeString, month } = getDateTime();
 
     of(this.orderList)
       .pipe(
@@ -89,6 +91,8 @@ export class PwHomeComponent implements AfterViewInit, OnDestroy {
             payment: this.payment,
             name: 'newjeong',
             extraRequirement: '얼음은 적게 주세요',
+            orderAt: timeString,
+            orderMonth: month
           });
         }),
         delay(1000),

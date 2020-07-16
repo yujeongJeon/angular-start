@@ -41,3 +41,11 @@ export const isEmpty = (val) => {
 
   return false;
 }
+
+export const getDateTime = () => {
+  const date = new Date();
+  return {
+    timeString: `${date.toLocaleDateString('kr-KR')} ${date.toLocaleTimeString('kr-KR')}`,
+    month: date.getMonth()+1
+  }
+}

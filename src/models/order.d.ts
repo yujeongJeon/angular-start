@@ -8,5 +8,7 @@ declare namespace Order {
     payment: number;
     name: string;
     extraRequirement: string;
+    orderAt: string;
+    orderMonth: number;
   }
 }

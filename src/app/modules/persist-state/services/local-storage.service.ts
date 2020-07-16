@@ -33,10 +33,10 @@ export class LocalStorageService {
   append(key:string, value:any, timeoutHours?:number):boolean{
     try {
       const prevValue:NotSpecified | null = this.get(key);
-      const nextValue = !!prevValue
+      const nextValue = !!prevValue && Array.isArray(prevValue)
       ? [
-        ...prevValue,
-        value
+        value,
+        ...prevValue
       ]
       : [value]
 
