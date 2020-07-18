@@ -1,6 +1,6 @@
-<div class="content" *ngIf="_products as products">
+<div class="content" *ngIf="products$ | async as products">
   <app-ct-order-list> </app-ct-order-list>
-  <app-ct-search (setSearchResult)="setSearchResult($event)"></app-ct-search>
+  <app-ct-search></app-ct-search>
   <div *ngIf="products.length > 0;else empty">
     <div>
       <h5>전체 {{ products.length }}개</h5>

@@ -1,23 +1,25 @@
-import { MenuService } from './../../services/menu.service';
+import { State } from './../../../../reducers';
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { createSelector, Store } from '@ngrx/store';
+import * as menuReducer from '../../reducers/menu.reducer';
+import * as menuActions from '../../actions/menu.actions';
+
+const menuSelector = (() => ({
+  coffees: createSelector(menuReducer.selectMenu, state => state.coffees),
+}))();
 
 @Component({
   selector: 'app-pw-home',
   templateUrl: './pw-home.component.html',
   styleUrls: ['./pw-home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [MenuService]
 })
 export class PwHomeComponent implements OnInit {
-  _products?:Product.Coffee[]
+  products$ = this.store$.select(menuSelector.coffees);
 
   ngOnInit () {
-    this._products = this.menuService.getProducts();
+    this.store$.dispatch(menuActions.loadMenu());
   }
 
-  setSearchResult(result){
-    this._products = result;
-  }
-
-  constructor(private menuService:MenuService) {}
+  constructor(private store$:Store<State>) {}
 }

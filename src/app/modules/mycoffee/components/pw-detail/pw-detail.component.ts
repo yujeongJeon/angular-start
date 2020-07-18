@@ -18,6 +18,5 @@ export class PwDetailComponent implements OnInit {
     let orderIdx = this.activatedRoute.snapshot.paramMap.get('orderId');
     const orders: Order.History[] = this.localService.get('orders');
     this.order$ = orders[orderIdx];
-    console.log(this.order$)
   }
 }

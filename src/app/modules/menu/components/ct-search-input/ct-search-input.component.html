@@ -1,5 +1,6 @@
 <div class="row mt-3">
   <div class="col-12">
-    <input type="text" placeholder="커피 메뉴 검색" #input />
+    <input type="text" placeholder="커피 메뉴 검색" [formControl]="keyword" />
+    <span class="font-xs loader" *ngIf="loader">...</span>
   </div>
 </div>

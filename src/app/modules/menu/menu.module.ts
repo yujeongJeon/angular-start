@@ -1,3 +1,5 @@
+import { MenuEffects } from './effects/menu.effects';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MenuService } from './services/menu.service';
 import { CtSearchComponent } from './components/ct-search-input/ct-search-input.component';
 import { SharedModule } from './../shared/shared.module';
@@ -10,6 +12,7 @@ import { ViewItemComponent } from './components/view-item/view-item.component';
 import { PwHomeComponent } from './components/pw-home/pw-home.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -24,8 +27,10 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     MenuRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    EffectsModule.forFeature([MenuEffects]),
   ],
-  providers: []
+  providers: [MenuService]
 })
 export class MenuModule {}

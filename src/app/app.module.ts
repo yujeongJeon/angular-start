@@ -1,3 +1,4 @@
+import { MenuEffects } from './modules/menu/effects/menu.effects';
 import { PersistStateModule } from './modules/persist-state/persist-state.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ViewFooterComponent } from './components/view-footer/view-footer.component';
@@ -9,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ViewHeaderComponent } from './components/view-header/view-header.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -21,10 +25,12 @@ import { ViewHeaderComponent } from './components/view-header/view-header.compon
     BrowserModule,
     SharedModule.forRoot(),
     PersistStateModule.forRoot(),
-    //ReactiveFormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
