@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
-import { OrderService } from './../../../shared/services/order.service';
 import { Component, ChangeDetectionStrategy } from "@angular/core";
+import { State, getOrderItemList, getTotalInfo } from '../../../../reducers';
+import * as orderActions from '../../../shared/actions/order.actions'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-pw-home',
@@ -9,25 +11,19 @@ import { Component, ChangeDetectionStrategy } from "@angular/core";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PwHomeComponent {
-  get orderList(){
-    return this.orderService.orderList;
-  }
-
-  get totalCount(){
-    return this.orderService.totalCount;
-  }
-
-  get totalPrice(){
-    return this.orderService.totalPrice;
-  }
+  orders$ = this.store$.select(getOrderItemList);
+  totalInfo$ = this.store$.select(getTotalInfo);
 
   removeCoffee (productId) {
-    this.orderService.removeCoffee(productId);
+    this.store$.dispatch(orderActions.removeCoffee({productId}))
   }
 
   gotoOrder(){
     this.router.navigate(['order']);
   }
   
-  constructor(private orderService:OrderService, private router:Router) {}
+  constructor(
+    private router:Router,
+    private store$:Store<State>
+  ) {}
 }

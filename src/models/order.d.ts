@@ -1,6 +1,4 @@
 declare namespace Order {
-  type OrderDetail = Product.Coffee & { count: number; unitPrice: number };
-
   interface OrderItem {
     menu: Product.Coffee;
     count: number;
@@ -8,7 +6,7 @@ declare namespace Order {
   }
 
   interface History {
-    orderList: OrderDetail[];
+    orderList: OrderItem[];
     totalPrice: number;
     totalCount: number;
     payment: number;

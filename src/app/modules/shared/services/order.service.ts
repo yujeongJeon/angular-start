@@ -1,86 +1,61 @@
+import { getDateTime } from './../../../utils/util';
+import { getTotalInfo } from './../../../reducers/index';
+import { LocalStorageService } from '../../persist-state/services/local-storage.service';
 import { Injectable } from '@angular/core';
-import { add, map } from '../../../utils/util';
+import { Store } from '@ngrx/store';
+import { State, getOrderItemList } from '../../../reducers';
+import { tap, takeWhile } from 'rxjs/operators';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable()
 export class OrderService {
-  // 나중에 reducer로 분리할 State
-  orderByArray: Array<string> = [];
-  orderById: { [key: string]: Order.OrderDetail } = {};
+  _orders:Order.OrderItem[];
+  _totalInfo:{count:number;price:number;}
 
-  getUnitPrice(coffee: Product.Coffee, count) {
-    const { isSale, salePrice, price } = coffee;
-    const flatPrice = isSale ? salePrice : price;
+  status$: BehaviorSubject<{
+    status: string;
+  }> = new BehaviorSubject({ status: '9000' });
 
-    return flatPrice * count;
+  saveIntoLocalStorage({ name, requirement, payment }) {
+    const { timeString, month } = getDateTime();
+
+    of(this._orders)
+      .pipe(
+        takeWhile((list) => list.length > 0),
+        tap((_) => {
+          this.localService.append('orders', {
+            orderList: this._orders,
+            totalCount: this._totalInfo.count,
+            totalPrice: this._totalInfo.price,
+            payment: payment,
+            name: name,
+            extraRequirement: requirement,
+            orderAt: timeString,
+            orderMonth: month
+          });
+        }),
+      )
+      .subscribe(() => {
+        this.status$.next({ status: '1000' });
+      });
+
+    return this.status$.asObservable();
   }
 
-  addCoffee(coffee: Product.Coffee) {
-    const { productId } = coffee;
+  constructor(
+    private localService: LocalStorageService,
+    private store$: Store<State>
+  ) {
+    this.store$.select(getOrderItemList).subscribe((orders) => {
+      this._orders = orders.map(order => ({
+        menu: order.menu,
+        unitPrice: order.unitPrice,
+        count: order.count
+      }));
+    });
 
-    this.orderByArray.push(coffee.productId);
-
-    const targetOrder = this.orderById[productId];
-
-    const nextCount = targetOrder ? targetOrder.count + 1 : 1;
-
-    const nextUnitPrice = this.getUnitPrice(coffee, nextCount);
-
-    this.orderById[coffee.productId] = {
-      ...coffee,
-      count: nextCount,
-      unitPrice: nextUnitPrice,
-    };
-  }
-
-  deleteCoffee(coffee: Product.Coffee) {
-    const { productId } = coffee;
-
-    const idx = this.orderByArray.findIndex((id) => id === productId);
-
-    idx > -1 && this.orderByArray.splice(idx, 1);
-
-    const nextCount = this.orderById[productId].count - 1;
-
-    if (nextCount <= 0) {
-      delete this.orderById[productId];
-      return;
-    }
-
-    (this.orderById[productId].unitPrice = this.getUnitPrice(
-      coffee,
-      nextCount
-    )),
-      (this.orderById[productId].count = nextCount);
-  }
-
-  removeCoffee(productId: string) {
-    delete this.orderById[productId];
-    this.orderByArray = this.orderByArray.filter((id) => id !== productId);
-  }
-
-  get totalCount(): number {
-    return this.orderByArray.length;
-  }
-
-  get totalPrice(): number {
-    const coffees = Object.values(this.orderById);
-
-    const calcPrices = coffees.map((coffee) => coffee.unitPrice);
-
-    return add(calcPrices);
-  }
-
-  getCoffee(id) {
-    return this.orderById[id];
-  }
-
-  removeAll() {
-    this.orderByArray = [];
-    this.orderById = {};
-  }
-
-  get orderList(): Order.OrderDetail[] {
-    const orderSet = new Set(this.orderByArray);
-    return map(orderSet, (id) => this.getCoffee(id));
+    this.store$.select(getTotalInfo).subscribe((totalInfo) => {
+      this._totalInfo = totalInfo;
+    });
   }
 }

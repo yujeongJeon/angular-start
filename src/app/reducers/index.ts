@@ -38,8 +38,6 @@ export const getOrderItemList = createSelector(
       return orderItem;
     })
 
-    console.log(result);
-
     return result;
   }
 )

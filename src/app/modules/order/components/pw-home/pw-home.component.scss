@@ -35,6 +35,10 @@
         border-color: #000;
         font-weight: 700;
       }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

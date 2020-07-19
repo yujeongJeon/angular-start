@@ -6,17 +6,18 @@ import { Component, Input } from "@angular/core";
   styleUrls: ['./view-order-item.component.scss']
 })
 export class ViewOrderItemComponent {
-  @Input() orderList:Order.OrderDetail[];
+  @Input() orderList:Order.OrderItem[];
 
   get content ():string {
     let str = '';
-    this.orderList.map((elem, idx) => {
+    this.orderList.every((elem, idx) => {
       if (idx > 1) {
         str += ` 외 ${this.orderList.length - idx}건`;
-        return str;
+        return false;
       }
       if (str.length > 0) str += ', ';
-      str+=`${elem.title} ${elem.count}잔`
+      str+=`${elem.menu.title} ${elem.count}잔`;
+      return true;
     })
 
     return str;

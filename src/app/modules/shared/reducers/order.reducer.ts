@@ -39,6 +39,13 @@ const orderReducer = createReducer(
     return {
       quantityById: nextState
     }
+  }),
+  on(orderActions.createNewOrderComplete, (state:State) => {
+    return initialState;
+  }),
+  on(orderActions.createNewOrderFailure, (state:State, {message}) => {
+    console.log(message);
+    return state;
   })
 )
 
@@ -54,8 +61,3 @@ export const getCount = createSelector(
     return state.quantityById[props.id] || 0
   }
 )
-
-// export const getCount = (id: string) => createSelector(
-//   selectOrder,
-//   customers => customers[id]
-// );

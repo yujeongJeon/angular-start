@@ -1,7 +1,12 @@
 .order_info {
   color: #dbdbdb;
   border-bottom: 1px solid #dbdbdb;
-
+  height: 70px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
   &.text_section {
     min-height: 70px;
     height: inherit;
@@ -10,13 +15,35 @@
     color: #333;
 
     &.header {
-      width: 115px;
+      width: 120px;
     }
 
     &.requirement {
       white-space: pre-wrap;
     }
   }
+}
+
+.info_wrapper {
+  border: 1px solid #dbdbdb;
+  margin: 8px 15px;
+
+  .info_elem {
+    .header {
+      background: #fafafa;
+      padding: 7px 8px;
+      font-size: .875rem;
+    }
+    .content {
+      padding: 5px 8px;
+      min-height: 50px;
+      white-space: pre-wrap;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+  
 }
 
 .menu_list {

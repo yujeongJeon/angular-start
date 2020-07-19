@@ -1,10 +1,8 @@
 import { Router } from '@angular/router';
-import { OrderService } from './../../../shared/services/order.service';
-import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { OnInit, OnDestroy } from '@angular/core';
 import {
   Component,
-  Input
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State, getOrderItemList, getTotalInfo } from '../../../../reducers';
@@ -18,7 +16,7 @@ import * as orderActions from '../../../shared/actions/order.actions';
 export class CtOrderListComponent implements OnInit, OnDestroy {
   orders$ = this.store$.select(getOrderItemList);
   totalInfo$ = this.store$.select(getTotalInfo);
-  
+
   hasToTop = false;
 
   scroll$ = (e) => {
@@ -42,22 +40,12 @@ export class CtOrderListComponent implements OnInit, OnDestroy {
 
   removeItem(productId:string){
     this.store$.dispatch(orderActions.removeCoffee({productId}));
-    //this.orderService.removeCoffee(productId);
     this.cdr.markForCheck();
   }
 
   constructor(
     private cdr:ChangeDetectorRef, 
-    private orderService:OrderService, 
     private router:Router,
     private store$:Store<State>
   ){}
-
-  // get orders () {
-  //   return this.orderService.orderList;
-  // }
-
-  // get totalPrice(){
-  //   return this.orderService.totalPrice;
-  // }
 }

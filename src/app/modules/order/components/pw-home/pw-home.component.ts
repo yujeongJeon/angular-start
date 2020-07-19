@@ -1,33 +1,27 @@
-import { getDateTime } from './../../../../utils/util';
-import { LocalStorageService } from './../../../persist-state/services/local-storage.service';
 import { Router } from '@angular/router';
 import { PAYMENT_CODE } from './../../consts';
-import { OrderService } from './../../../shared/services/order.service';
 import {
   Component,
   ViewChild,
   ElementRef,
-  AfterViewInit,
-  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { moneyIcon } from '../../../../utils/products';
-import { Unsubscribable, fromEvent, of, Subject } from 'rxjs';
+import { Unsubscribable, Subject } from 'rxjs';
 import {
   tap,
-  delay,
-  timeout,
-  catchError,
-  concatMap,
   take,
-  takeWhile,
 } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { State, getOrderItemList, getTotalInfo } from '../../../../reducers';
+import * as orderActions from '../../../shared/actions/order.actions';
 
 @Component({
   selector: 'app-pw-home',
   templateUrl: './pw-home.component.html',
   styleUrls: ['./pw-home.component.scss'],
 })
-export class PwHomeComponent implements AfterViewInit, OnDestroy {
+export class PwHomeComponent implements OnInit {
   ico = moneyIcon;
   payment: PAYMENT_CODE = PAYMENT_CODE.NOTHING;
   subs: Unsubscribable[] = [];
@@ -36,12 +30,32 @@ export class PwHomeComponent implements AfterViewInit, OnDestroy {
   @ViewChild('orderBtn', { static: true })
   orderBtn: ElementRef<HTMLButtonElement>;
 
-  get orderList() {
-    return this.orderService.orderList;
+  orders$ = this.store$.select(getOrderItemList);
+  totalInfo$ = this.store$.select(getTotalInfo);
+
+  subject: Subject<{name:string;requirement:string;payment:PAYMENT_CODE}> = new Subject();
+
+  createNewOrder() {
+    this.subject.next({
+      name: 'newjeong',
+      requirement: '얼음 적게, 빨대 주지마세요. 컵홀더 꼭 해주세요',
+      payment: this.payment
+    })
   }
 
-  get totalPrice() {
-    return this.orderService.totalPrice;
+  ngOnInit() {
+    this.subject.pipe(
+      take(1),
+      tap(() => this.setLoading(true)),
+    ).subscribe(({name, requirement, payment}) => ({
+      next: this.store$.dispatch(orderActions.createNewOrder({
+        name, requirement, payment
+      }))
+    }))
+  }
+
+  ngOnDestroy() {
+    this.subject.unsubscribe();
   }
 
   getPaymentCode(payment): PAYMENT_CODE {
@@ -67,77 +81,11 @@ export class PwHomeComponent implements AfterViewInit, OnDestroy {
   }
 
   constructor(
-    private orderService: OrderService,
-    private storageService: LocalStorageService,
+    private store$: Store<State>,
     private router: Router
   ) {}
 
   setLoading(status) {
     this.loading$ = status;
-  }
-
-  saveOrder() {
-    const subject = new Subject<{ [key: string]: string }>();
-    const { timeString, month } = getDateTime();
-
-    of(this.orderList)
-      .pipe(
-        takeWhile((list) => list.length > 0),
-        tap((_) => {
-          this.storageService.append('orders', {
-            orderList: this.orderList,
-            totalCount: this.orderService.totalCount,
-            totalPrice: this.totalPrice,
-            payment: this.payment,
-            name: 'newjeong',
-            extraRequirement: '얼음은 적게 주세요',
-            orderAt: timeString,
-            orderMonth: month
-          });
-        }),
-        delay(1000),
-      )
-      .subscribe(() => {
-        subject.next({ status: '1000' });
-      });
-
-    return subject.asObservable();
-  }
-
-  ngOnDestroy() {
-    this.subs.map((sub) => sub.unsubscribe());
-  }
-
-  ngAfterViewInit() {
-    const btn = this.orderBtn.nativeElement;
-
-    this.subs.push(
-      fromEvent(btn, 'click')
-        .pipe(
-          take(1),
-          tap((_) => this.setLoading(true)),
-          concatMap(() =>
-            this.saveOrder().pipe(
-              timeout(5000),
-              catchError((e) => of({ status: '9000' }))
-            )
-          )
-        )
-        .subscribe(({ status }) => {
-          this.setLoading(false);
-
-          switch (status) {
-            case '1000':
-              this.orderService.removeAll();
-              this.router.navigate(['/order/complete']);
-              break;
-            case '9000':
-              this.router.navigate(['/order/failure']);
-              break;
-            default:
-              break;
-          }
-        })
-    );
   }
 }
