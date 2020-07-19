@@ -21,5 +21,5 @@
     </div>
   </div>
 </a>
-<app-ct-counter [coffee]="item" *ngIf="isOpen"></app-ct-counter>
+<app-ct-counter [id]="item.productId" *ngIf="isOpen"></app-ct-counter>
 <button class="btn btn-link btn-search" [class.openPosition]="isOpen" (click)="onClick($event)">more</button>

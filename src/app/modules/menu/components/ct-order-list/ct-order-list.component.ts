@@ -6,6 +6,9 @@ import {
   Component,
   Input
 } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State, getOrderItemList, getTotalInfo } from '../../../../reducers';
+import * as orderActions from '../../../shared/actions/order.actions';
 
 @Component({
   selector: 'app-ct-order-list',
@@ -13,6 +16,9 @@ import {
   styleUrls: ['./ct-order-list.component.scss'],
 })
 export class CtOrderListComponent implements OnInit, OnDestroy {
+  orders$ = this.store$.select(getOrderItemList);
+  totalInfo$ = this.store$.select(getTotalInfo);
+  
   hasToTop = false;
 
   scroll$ = (e) => {
@@ -35,17 +41,23 @@ export class CtOrderListComponent implements OnInit, OnDestroy {
   }
 
   removeItem(productId:string){
-    this.orderService.removeCoffee(productId);
+    this.store$.dispatch(orderActions.removeCoffee({productId}));
+    //this.orderService.removeCoffee(productId);
     this.cdr.markForCheck();
   }
 
-  constructor(private cdr:ChangeDetectorRef, private orderService:OrderService, private router:Router){}
+  constructor(
+    private cdr:ChangeDetectorRef, 
+    private orderService:OrderService, 
+    private router:Router,
+    private store$:Store<State>
+  ){}
 
-  get orders () {
-    return this.orderService.orderList;
-  }
+  // get orders () {
+  //   return this.orderService.orderList;
+  // }
 
-  get totalPrice(){
-    return this.orderService.totalPrice;
-  }
+  // get totalPrice(){
+  //   return this.orderService.totalPrice;
+  // }
 }

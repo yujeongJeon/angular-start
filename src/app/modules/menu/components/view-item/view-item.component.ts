@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import {
   Component,
   Input,
@@ -25,5 +26,6 @@ export class ViewItemComponent {
     this.router.navigate([`menu/detail/${this.item.productId}`])
   }
 
-  constructor(private router:Router) {}
+  constructor(private router:Router) {
+  }
 }

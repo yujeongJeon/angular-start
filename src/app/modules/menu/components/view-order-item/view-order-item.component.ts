@@ -7,6 +7,6 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
   //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ViewOrderItemComponent {
-  @Input() order?:Order.OrderDetail;
+  @Input() order:Order.OrderItem;
   @Output() removeItem = new EventEmitter<string>();
 }

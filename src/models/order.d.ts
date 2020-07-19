@@ -1,6 +1,12 @@
 declare namespace Order {
   type OrderDetail = Product.Coffee & { count: number; unitPrice: number };
 
+  interface OrderItem {
+    menu: Product.Coffee;
+    count: number;
+    unitPrice: number;
+  }
+
   interface History {
     orderList: OrderDetail[];
     totalPrice: number;

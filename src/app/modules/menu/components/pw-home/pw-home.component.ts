@@ -4,9 +4,9 @@ import { createSelector, Store } from '@ngrx/store';
 import * as menuReducer from '../../reducers/menu.reducer';
 import * as menuActions from '../../actions/menu.actions';
 
-const menuSelector = (() => ({
+const menuSelector = {
   coffees: createSelector(menuReducer.selectMenu, state => state.coffees),
-}))();
+};
 
 @Component({
   selector: 'app-pw-home',

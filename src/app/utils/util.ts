@@ -1,5 +1,5 @@
 /* https://peter-cho.gitbook.io/book/3/3_5 */
-export const add = (array: Array<any>, firstValue: number) => {
+export const add = (array: Array<any>, firstValue: number=0) => {
   return array.reduce((a, v) => a + v, firstValue);
 };
 

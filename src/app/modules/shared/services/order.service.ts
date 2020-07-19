@@ -67,7 +67,7 @@ export class OrderService {
 
     const calcPrices = coffees.map((coffee) => coffee.unitPrice);
 
-    return add(calcPrices, 0);
+    return add(calcPrices);
   }
 
   getCoffee(id) {
