@@ -1,27 +1,43 @@
-# AngularTest
+# 앵귤러 토이 프로젝트
+#study #angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+## 카페 사이렌 오더 서비스
 
-## Development server
+### 화면 정의
+* 목표 화면 리스트
+	* 메뉴 페이지
+		* 상세 페이지
+	* 장바구니 페이지
+	* 주문 진행 페이지
+		* 성공 페이지
+		* 실패 페이지
+	* 마이커피 페이지
+	* 리뷰 작성 페이지
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### 기능 정의
+- 메뉴 페이지
+	1. ~~메뉴 리스트 출력~~
+	2. ~~빠른 주문 기능~~
+		- ~~수량 조절~~
+		- ~~상단에 주문 리스트 노출~~
+		- ~~총 가력 및 수량 출력~~
+		- ~~메뉴 삭제~~
+	3. 메뉴 검색
+- ~~장바구니 페이지~~
+	1. ~~주문메뉴 출력~~
+	2. ~~메뉴 삭제~~
+	3. ~~총 가격 및 수량 출력~~
+- ~~주문 진행 페이지~~
+	1. ~~주문 리스트~~
+	2. ~~주문자 정보~~
+	3. 요청 사항 textarea > reactive form
+	- ~~주문 성공 페이지~~
+		1. ~~주문 내역 및 주문자 정보 출력~~
+	- ~~주문 실패 페이지~~
+- 마이커피 페이지
+	1. 커피별 작성한 리뷰 내역 출력
+	2. ~~주문 내역 출력~~
+		- 주문 내역 삭제
+		- 같은 메뉴 주문할 수 있는 기능
+- 리뷰 작성 페이지
+	1. 별 개수와 리뷰 textarea > cva
