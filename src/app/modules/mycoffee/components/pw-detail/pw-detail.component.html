@@ -6,5 +6,26 @@
   <div class="sub_header">
     주문한 메뉴
   </div>
+  <div *ngFor="let orderItem of order.orderList" class="menu sub_content">
+    <div class="pos_left" *ngIf="orderItem.menu as menu">
+      <div class="img">
+        <img [attr.src]="menu.image" [attr.width]="37" />
+      </div>
+      <div class="content">
+        <p class="mb-1">{{menu.title}}</p>
+        {{orderItem.count}}잔
+      </div>
+    </div>
+    <div class="pos_right">{{orderItem.unitPrice | krCurrency}}</div>
+  </div>
+  <div class="d-flex-between total header">
+    <span>수량</span>
+    <span>금액</span>
+  </div>
+  <div class="d-flex-between total">
+    <span>{{order.totalCount}}잔</span>
+    <span>{{order.totalPrice | krCurrency}}</span>
+  </div>
 </div>
+<button class="btn btn-primary block my-3" (click)="reorder()">재주문</button>
 </ng-container>

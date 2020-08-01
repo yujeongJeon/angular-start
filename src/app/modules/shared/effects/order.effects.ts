@@ -45,6 +45,17 @@ export class OrderEffects {
     { dispatch: false }
   );
 
+  afterReorderSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(orderActions.addMultipleCoffees),
+        tap(() => {
+          this.router.navigate(['/cart']);
+        })
+      ),
+    { dispatch: false }
+  );
+
   constructor(
     private actions$: Actions,
     private orderService: OrderService,

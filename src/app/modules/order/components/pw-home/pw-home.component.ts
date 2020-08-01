@@ -2,12 +2,10 @@ import { Router } from '@angular/router';
 import { PAYMENT_CODE } from './../../consts';
 import {
   Component,
-  ViewChild,
-  ElementRef,
   OnInit,
 } from '@angular/core';
 import { moneyIcon } from '../../../../utils/products';
-import { Unsubscribable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import {
   tap,
   take,
@@ -24,11 +22,7 @@ import * as orderActions from '../../../shared/actions/order.actions';
 export class PwHomeComponent implements OnInit {
   ico = moneyIcon;
   payment: PAYMENT_CODE = PAYMENT_CODE.NOTHING;
-  subs: Unsubscribable[] = [];
   loading$: boolean = false;
-
-  @ViewChild('orderBtn', { static: true })
-  orderBtn: ElementRef<HTMLButtonElement>;
 
   orders$ = this.store$.select(getOrderItemList);
   totalInfo$ = this.store$.select(getTotalInfo);

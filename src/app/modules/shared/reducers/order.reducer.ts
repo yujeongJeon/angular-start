@@ -21,6 +21,14 @@ const orderReducer = createReducer(
       quantityById: nextState
     }
   }),
+  on(orderActions.addMultipleCoffees, (state: State, {orderItems}) => {
+    let nextState = {};
+
+    orderItems.map(({productId,  count}) => (nextState[productId] = Number(count)));
+    return {
+      quantityById: nextState
+    };
+  }),
   on(orderActions.deleteCoffee, (state:State, {productId}) => {
     let nextState = {...state.quantityById};
     nextState[productId]--;
@@ -44,7 +52,6 @@ const orderReducer = createReducer(
     return initialState;
   }),
   on(orderActions.createNewOrderFailure, (state:State, {message}) => {
-    console.log(message);
     return state;
   })
 )

@@ -5,6 +5,11 @@ declare namespace Order {
     unitPrice: number;
   }
 
+  interface QuantityById {
+    productId: string;
+    count: number;
+  }
+
   interface History {
     orderList: OrderItem[];
     totalPrice: number;
